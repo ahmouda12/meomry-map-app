@@ -1,6 +1,17 @@
 <h2>User's Details</h2>
     
 <p> Hello, {{ currentUserInfo.firstname }} </p>
+<p>Your places:</p>
+<ul>
+      {{#each places}}
+      <li>
+        <a href="/{{ this._id}}">{{ this.name}}<span>{{ this.description }}</span></a> |
+        <a href="/{{ this._id}}/edit">Edit</a> |
+        <a href="/{{ this._id}}/delete">Delete</a>
+      </li>
+      {{/each }}
+    </ul>
+
 <a href="/new-place">Creat a new memory</a>
 <br></br>
 <a href="/logout"> Log Out </a>
