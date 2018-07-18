@@ -1,0 +1,31 @@
+<h2> Log In </h2>
+
+{{#if errorMessage}}
+  <p class="error-message">
+    {{ errorMessage }}
+  </p>
+{{/if}}
+
+<form action="/login" method="post">
+  <label for="email-input"> Email: </label>
+  <input type="email" name="email" id="email-input" placeholder="e.g., xena@warrior.company">
+  <br><br>
+  <label for="password-input"> Password: </label>
+  <input type="password" name="password" id="password-input" placeholder="e.g., ••••••••••••">
+  <br><br>
+  <button> Log In </button>
+</form>
+
+<p>
+<a href="/auth/facebook"> Login With Facebook </a>
+</p>
+<p>
+<a href="/auth/google"> Login With Google </a>
+</p>
+
+<p>
+  Don't have an account?
+  <a href="/signup">
+    Create an account.
+  </a>
+</p>

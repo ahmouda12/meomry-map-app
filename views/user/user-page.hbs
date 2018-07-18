@@ -1,0 +1,22 @@
+<h2>User's Details</h2>
+    
+<p> Hello, {{ currentUserInfo.firstname }} </p>
+<a href="/new-place">Creat a new memory</a>
+<br></br>
+<a href="/logout"> Log Out </a>
+<br></br>
+
+<div id="map"></div>
+
+<section>
+  {{#each places}}
+    {{!-- <h3>{{ this.name }}</h3> --}}
+    <img class="img" src="{{ this.path }}" alt="{{ this.originalName }}" />
+  {{/each}}
+</section>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.3.2/dist/leaflet.js"
+      integrity="sha512-2fA79E27MOeBgLjmBrtAgM/20clVSV8vJERaW/EcnnWCVGwQRazzKtQS1kIusCZv1PtaQxosDZZ0F1Oastl55w=="
+      crossorigin=""></script>  
+<script src='/javascripts/user-page.js'></script>
