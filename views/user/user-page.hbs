@@ -1,18 +1,23 @@
+{{!-- {{#if isUserLoggedIn}} --}}
+
 <h2>User's Page</h2>
     
-<p> Hello, {{ currentUserInfo.firstname }} </p>
+  <p> Hello, {{ currentUserInfo.firstname }}. </p>
+
+{{#if places}}
 <p>Your places:</p>
 <ul>
       {{#each places}}
       <li>
-        <a href="/{{ this._id}}">{{ this.name}}<span>{{ this.description }}</span></a> |
+        <a href="/{{ this._id}}">{{ this.name}}</a> |
         <a href="/{{ this._id}}/edit">Edit</a> |
         <a href="/{{ this._id}}/delete">Delete</a>
       </li>
       {{/each }}
     </ul>
+{{/if}}
 
-<a href="/new-place">Creat a new memory</a>
+<a href="/new-place">Add a new place</a>
 <br></br>
 <a href="/logout"> Log Out </a>
 <br></br>
@@ -25,6 +30,8 @@
     <img class="img" src="{{ this.path }}" alt="{{ this.originalName }}" />
   {{/each}}
 </section>
+
+{{!-- {{/if}} --}}
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.3.2/dist/leaflet.js"

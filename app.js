@@ -56,16 +56,11 @@ app.use(session({
 
 app.use((req, res, next) => {
   if (req.session.currentUser) {
-      console.log("HELLO!!!");
-
-    // console.log(req.session.currentUser)
     res.locals.currentUserInfo = req.session.currentUser;
     res.locals.isUserLoggedIn = true;
   } else {
     res.locals.isUserLoggedIn = false;
   }
-  console.log("OUTSIDE");
-
   next();
 });
 
@@ -122,8 +117,8 @@ passport.use(new GoogleStrategy({
       return done(err);
     }
     if (user) {
-      console.log('req ===== ', user);
-      req.res.locals.currentUserInfo = {firstName:'Alan'};
+      // console.log('req ===== ', user);
+      // req.res.locals.currentUserInfo = {firstName:'Alan'};
       // res.locals.isUserLoggedIn = true;
       return done(null, user);
     }
@@ -168,7 +163,7 @@ app.locals.title = 'Memory Map';
 const index = require('./routes/index');
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
-const placeRoutes = require("./routes/new-place");
+const placeRoutes = require("./routes/place");
 app.use('/', index);
 app.use('/', authRoutes);
 app.use('/', userRoutes);

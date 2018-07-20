@@ -2,9 +2,9 @@ function initmap() {
 	// set up the map
   let map = L.map( 'map', {
     attributionControl: false,
-    center: [38, -98],
+    center: [0, 0],
     minZoom: 2,
-    zoom: 4
+    zoom: 2
   });
 
   let markers = [];
@@ -38,8 +38,15 @@ function initmap() {
           markers.push(pin);
     });
     // Zoom to fit all markers
-    let group = L.featureGroup(markers).addTo(map);
-    map.fitBounds(group.getBounds());
+    if (markers.length > 1) {
+      let group = L.featureGroup(markers).addTo(map);
+      map.fitBounds(group.getBounds(), {padding: [50,50]});
+    }
+    else if (markers.length === 1) {
+      lat = places[0].location.coordinates[1];
+      lng = places[0].location.coordinates[0];
+      map.setView(new L.LatLng(lat, lng), 4);
+    }
   }      
 }
 
