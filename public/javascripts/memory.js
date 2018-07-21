@@ -14,7 +14,7 @@ function initmap() {
   }).addTo(map);
 
   function getPlace() {
-    axios.get("http://localhost:3000/json")
+    axios.get("/json")
     .then( response => {
       placePlaces(response.data.places);
     })
