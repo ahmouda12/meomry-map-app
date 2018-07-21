@@ -33,8 +33,12 @@ function initmap() {
       };
       // Add markers to the map
       const pin = new L.marker([center.lat, center.lng]).addTo(map)
-          .bindPopup(place.path);
-          // .openPopup();
+          .bindPopup(place.name);
+
+        //   pin.on('click', function(e){
+        //     map.setView([center.lat, center.lng], 13);
+        // });
+        
           markers.push(pin);
     });
     // Zoom to fit all markers
@@ -47,7 +51,8 @@ function initmap() {
       lng = places[0].location.coordinates[0];
       map.setView(new L.LatLng(lat, lng), 4);
     }
-  }      
+  }
+
 }
 
 initmap();

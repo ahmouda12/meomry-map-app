@@ -164,10 +164,12 @@ const index = require('./routes/index');
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const placeRoutes = require("./routes/place");
+const memoryRoutes = require("./routes/memory");
 app.use('/', index);
 app.use('/', authRoutes);
 app.use('/', userRoutes);
 app.use('/', placeRoutes);
+app.use('/', memoryRoutes);
 
 
 module.exports = app;

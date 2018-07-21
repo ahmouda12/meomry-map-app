@@ -1,23 +1,26 @@
 {{!-- {{#if isUserLoggedIn}} --}}
 
-<h2>User's Page</h2>
+<h2>Dashboard</h2>
     
   <p> Hello, {{ currentUserInfo.firstname }}. </p>
 
 {{#if places}}
+<a href="#"  data-point="40.7451, -73.949">fly</a>
+<br></br>
+<a href="/memory">Go to your memories</a>
 <p>Your places:</p>
 <ul>
       {{#each places}}
-      <li>
-        <a href="/{{ this._id}}">{{ this.name}}</a> |
-        <a href="/{{ this._id}}/edit">Edit</a> |
-        <a href="/{{ this._id}}/delete">Delete</a>
+      <li >
+        <a href="#" class="zoom">{{this.name}}</a> |
+        <a href="/{{this._id}}/edit">Edit</a> |
+        <a href="/{{this._id}}/delete">Delete</a>
       </li>
       {{/each }}
     </ul>
 {{/if}}
 
-<a href="/new-place">Add a new place</a>
+<a href="/new">Add a new place</a>
 <br></br>
 <a href="/logout"> Log Out </a>
 <br></br>
@@ -36,5 +39,6 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.3.2/dist/leaflet.js"
       integrity="sha512-2fA79E27MOeBgLjmBrtAgM/20clVSV8vJERaW/EcnnWCVGwQRazzKtQS1kIusCZv1PtaQxosDZZ0F1Oastl55w=="
-      crossorigin=""></script>  
-<script src='/javascripts/user-page.js'></script>
+      crossorigin=""></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
+<script src='/javascripts/dashboard.js'></script>

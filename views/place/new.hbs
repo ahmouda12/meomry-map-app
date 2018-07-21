@@ -1,7 +1,7 @@
 <p>Zoom to your place and click on the map to get the place's coordinates and enter them in the location fields.</p>
 
 <div>
-<form method="POST" action="/new-place" enctype="multipart/form-data">
+<form method="POST" action="/new" enctype="multipart/form-data">
   <input type="text" name="name"        placeholder="Place name">
   <input type="text" name="description" placeholder="Description">
 
@@ -16,7 +16,7 @@
 </form>
 </div>
 <br></br>
-<a href="/user"> User page </a>
+<a href="/user"> Dashboard </a>
 <br></br>
 
 <div id="map"></div>
@@ -24,4 +24,4 @@
 <script src="https://unpkg.com/leaflet@1.3.2/dist/leaflet.js"
       integrity="sha512-2fA79E27MOeBgLjmBrtAgM/20clVSV8vJERaW/EcnnWCVGwQRazzKtQS1kIusCZv1PtaQxosDZZ0F1Oastl55w=="
       crossorigin=""></script>  
-<script src='/javascripts/new-place.js'></script>
+<script src='/javascripts/new.js'></script>

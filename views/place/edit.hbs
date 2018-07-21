@@ -8,12 +8,12 @@
 			<input type="text" name="latitude" id="latitude" placeholder="Latitude" value="{{ place.location.coordinates.[1]}}">
 			<input type="text" name="longitude" id="longitude" placeholder="Longitude" value="{{ place.location.coordinates.[0]}}">
       {{!-- <label>Photo</label> --}}
-      {{!-- <input type="file" name="photo"> --}}
+      {{!-- <input type="file" name="photo" value="{{ place.path}}"> --}}
     	<button type="submit" name="" id="submit">Edit</button>
     </form>
     
 <br></br>
-<a href="/user"> User page </a>
+<a href="/user"> Dashboard </a>
 <br></br>
 
     <div id="map"></div>

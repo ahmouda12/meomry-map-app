@@ -5,11 +5,11 @@ const Place        = require('../models/place');
 const upload       = multer({ dest: './public/uploads/' });
 
 // New place
-placeRoutes.get('/new-place', (req, res, next) => {
-  res.render('place/new-place');
+placeRoutes.get('/new', (req, res, next) => {
+  res.render('place/new');
 });
 
-placeRoutes.post('/new-place', upload.single('photo'), (req, res, next) => {
+placeRoutes.post('/new', upload.single('photo'), (req, res, next) => {
 	// Get params from POST
 	const userId = req.session.currentUser._id;
   const location = {
