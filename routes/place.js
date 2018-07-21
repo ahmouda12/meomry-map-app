@@ -1,15 +1,16 @@
 const express      = require('express');
 const placeRoutes  = express.Router();
-const multer       = require('multer');
+// const multer       = require('multer');
+const uploadCloud  = require('../config/cloudinary.js');
 const Place        = require('../models/place');
-const upload       = multer({ dest: './public/uploads/' });
+// const upload       = multer({ dest: './public/uploads/' });
 
 // New place
 placeRoutes.get('/new', (req, res, next) => {
   res.render('place/new');
 });
 
-placeRoutes.post('/new', upload.single('photo'), (req, res, next) => {
+placeRoutes.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 	// Get params from POST
 	const userId = req.session.currentUser._id;
   const location = {
@@ -18,25 +19,39 @@ placeRoutes.post('/new', upload.single('photo'), (req, res, next) => {
   };
 
   // Create a new place with location
-  const newPlace = new Place({
-		userId: 		 userId,
-		name:        req.body.name,
-		description: req.body.description,
-		location:    location,
-		path: `/uploads/${req.file.filename}`,
-    originalName: req.file.originalname
-	});
+  // const newPlace = new Place({
+	// 	userId: 		 userId,
+	// 	name:        req.body.name,
+	// 	description: req.body.description,
+	// 	location:    location,
+	// 	imgPath: 		 req.file.url,
+  //   imgName: 		 req.file.originalname
+	// });
+
+	const { name, description } = req.body;
+  const imgPath = req.file.url;
+  const imgName = req.file.originalname;
+  const newPlace = new Place({userId, name, description, location, imgPath, imgName});
 
   // Save the place to the database
-  newPlace.save((error) => {
-		if (error) { next(error); }
-		else { res.redirect('/user');
-		}
-	});
+  // newPlace.save((error) => {
+	// 	if (error) { next(error); }
+	// 	else { res.redirect('/user');
+	// 	}
+	// });
+
+	newPlace.save()
+  .then(place => {
+    res.redirect('/user');
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
 });
 
 // Edit place
-placeRoutes.post('/:place_id', upload.single('photo'), (req, res, next) => {
+placeRoutes.post('/:place_id', (req, res, next) => {
 	Place.findById(req.params.place_id, (error, place) => {
 		if (error) { next(error); } 
 		else {

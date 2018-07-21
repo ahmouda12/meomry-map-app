@@ -6,8 +6,8 @@ const placeSchema = new Schema({
   name: String,
   description: String,
   location: { type: { type: String }, coordinates: [Number] },
-  path: String,
-  originalName: String
+  imgPath: String,
+  imgName: String
 });
 
 placeSchema.index({ location: '2dsphere' });
