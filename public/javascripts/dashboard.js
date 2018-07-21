@@ -14,18 +14,9 @@ function initmap() {
   }).addTo(map);
 
   function getPlace() {
-    axios.get("http://localhost:3000/json")
+    axios.get("https://meomry-map-app.herokuapp.com/json")
     .then( response => {
       placePlaces(response.data.places);
-      
-  //     console.log(response.data.places[0].location.coordinates[1])
-  //     let array = response.data.places;
-  //     // for (let i=0; i< array.length; i++  ){
-  //     $('.zoom').on('click', function(e){
-  //       map.setView([array[0].location.coordinates[1], array[0].location.coordinates[0]], 13);
-  //   });
-  // // }
-
     })
     .catch(error => {
       next(error);
