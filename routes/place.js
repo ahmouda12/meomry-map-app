@@ -13,32 +13,11 @@ placeRoutes.get('/new', (req, res, next) => {
 placeRoutes.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 	// Get params from POST
 	const userId = req.session.currentUser._id;
-  const location = {
-		type: 'Point',
-		coordinates: [req.body.longitude, req.body.latitude]
-  };
-
-  // Create a new place with location
-  // const newPlace = new Place({
-	// 	userId: 		 userId,
-	// 	name:        req.body.name,
-	// 	description: req.body.description,
-	// 	location:    location,
-	// 	imgPath: 		 req.file.url,
-  //   imgName: 		 req.file.originalname
-	// });
-
-	const { name, description } = req.body;
+  const location = {type: 'Point', coordinates: [req.body.longitude, req.body.latitude]};
+	const {name, description} = req.body;
   const imgPath = req.file.url;
   const imgName = req.file.originalname;
   const newPlace = new Place({userId, name, description, location, imgPath, imgName});
-
-  // Save the place to the database
-  // newPlace.save((error) => {
-	// 	if (error) { next(error); }
-	// 	else { res.redirect('/user');
-	// 	}
-	// });
 
 	newPlace.save()
   .then(place => {
@@ -47,7 +26,6 @@ placeRoutes.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   .catch(error => {
     console.log(error);
   });
-
 });
 
 // Edit place
@@ -58,8 +36,8 @@ placeRoutes.post('/:place_id', (req, res, next) => {
 			place.name         = req.body.name;
 			place.description  = req.body.description;
 			place.location 		 = { type: 'Point', coordinates: [req.body.longitude, req.body.latitude]};
-			// place.path				 = `/uploads/${req.file.filename}`;
-    	// place.originalName = req.file.originalname;
+			place.imgPath			 = url;
+    	place.imgName 		 = req.file.originalname;
 			place.save((error) => {
 				if (error) { next(error); } 
 				else { res.redirect('/user'); }

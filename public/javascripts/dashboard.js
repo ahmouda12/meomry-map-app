@@ -14,7 +14,7 @@ function initmap() {
   }).addTo(map);
 
   function getPlace() {
-    axios.get("https://meomry-map-app.herokuapp.com/json")
+    axios.get("/json")
     .then( response => {
       placePlaces(response.data.places);
     })
