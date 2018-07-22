@@ -59,7 +59,7 @@ authRoutes.post('/signup', (req, res, next) => {
         });
         return;
       }
-      res.redirect('/');
+      res.redirect('/login');
     });
   });
 });
