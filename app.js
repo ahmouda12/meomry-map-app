@@ -158,7 +158,10 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Memory Map';
 
-
+app.use((req, res, next) => {
+  app.locals.user = req.session.currentUser;
+  next();
+});
 
 const index = require('./routes/index');
 const authRoutes = require("./routes/auth");

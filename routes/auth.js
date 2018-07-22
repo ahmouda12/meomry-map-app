@@ -59,7 +59,7 @@ authRoutes.post('/signup', (req, res, next) => {
         });
         return;
       }
-      res.redirect('/user');
+      res.redirect('/');
     });
   });
 });
@@ -98,7 +98,7 @@ authRoutes.post('/login', (req, res, next) => {
     }
 
     req.session.currentUser = theUser;
-    res.redirect('/user');
+    res.redirect(`/${theUser.firstname}/dashboard`);
   });
 });
 

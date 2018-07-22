@@ -3,16 +3,14 @@ const userRoutes  = express.Router();
 const User        = require('../models/user');
 const Place       = require('../models/place');
 
-// userRoutes.get('/user', (req, res, next) => {
-//   res.render('user/user-page');
-// });
 
-userRoutes.get('/user', (req, res, next) => {
-  const userId = req.session.currentUser._id;
+userRoutes.get('/:userName/dashboard', (req, res, next) => {
+	const userId = req.session.currentUser._id;
+	const userName = req.session.currentUser.firstname;
 	Place.find({ 'userId': userId })
 	.exec((error, places) => {
 		if (error) { next(error); } 
-		else { res.render('user/dashboard', { places });}
+		else { res.render('user/dashboard', { places, userName });}
 	});
 });
 

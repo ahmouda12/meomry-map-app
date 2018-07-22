@@ -28,8 +28,8 @@ function initmap() {
     places.forEach((place) => {
       // console.log(place);
       const center = {
-        lat: place.location.coordinates[1],
-        lng: place.location.coordinates[0]
+        lat: place.location.coordinates[0],
+        lng: place.location.coordinates[1]
       };
       // Add markers to the map
       const pin = new L.marker([center.lat, center.lng]).addTo(map)
@@ -47,8 +47,8 @@ function initmap() {
       map.fitBounds(group.getBounds(), {padding: [50,50]});
     }
     else if (markers.length === 1) {
-      lat = places[0].location.coordinates[1];
-      lng = places[0].location.coordinates[0];
+      lat = places[0].location.coordinates[0];
+      lng = places[0].location.coordinates[1];
       map.setView(new L.LatLng(lat, lng), 4);
     }
   }

@@ -1,19 +1,19 @@
 <h3>Edit place</h3>
-    <form method="POST" action="/{{ place._id}}">
+    <form method="POST" action="/{{place._id}}" enctype="multipart/form-data">
     	<label>Name:</label>
     	<input type="" name="name" placeholder="Name" value="{{ place.name}}">
     	<label>Description:</label>
     	<input type="" name="description" placeholder="Description" value="{{ place.description}}">
       <label>Location</label>
-			<input type="text" name="latitude" id="latitude" placeholder="Latitude" value="{{ place.location.coordinates.[1]}}">
-			<input type="text" name="longitude" id="longitude" placeholder="Longitude" value="{{ place.location.coordinates.[0]}}">
+			<input type="text" name="latitude" id="latitude" placeholder="Latitude" value="{{ place.location.coordinates.[0]}}">
+			<input type="text" name="longitude" id="longitude" placeholder="Longitude" value="{{ place.location.coordinates.[1]}}">
       <label>Photo</label>
-      <input type="file" name="photo" value="{{ place.imgPath}}">
+      <input type="file" name="photo">
     	<button type="submit" name="" id="submit">Edit</button>
     </form>
     
 <br></br>
-<a href="/user"> Dashboard </a>
+<a href="/{{userName}}/dashboard"> Dashboard </a>
 <br></br>
 
     <div id="map"></div>
