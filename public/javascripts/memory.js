@@ -1,6 +1,8 @@
+let map;
+
 function initmap() {
 	// set up the map
-  let map = L.map( 'map', {
+  map = L.map( 'map', {
     attributionControl: false,
     center: [0, 0],
     minZoom: 2,
@@ -45,14 +47,89 @@ function initmap() {
     if (markers.length > 1) {
       let group = L.featureGroup(markers).addTo(map);
       map.fitBounds(group.getBounds(), {padding: [50,50]});
+      $("#zoomOut").on('click', function(e){
+        const group = L.featureGroup(markers).addTo(map);
+        map.fitBounds(group.getBounds(), {padding: [50,50]});
+      });
     }
     else if (markers.length === 1) {
       lat = places[0].location.coordinates[0];
       lng = places[0].location.coordinates[1];
       map.setView(new L.LatLng(lat, lng), 4);
+      $("#zoomOut").on('click', function(e){
+        map.setView(new L.LatLng(lat, lng), 4);
+      });
     }
   }
 
 }
+
+// Fly to markers
+function zoomIn(loc){
+  const center = {
+    lat: loc.coordinates[0],
+    lng: loc.coordinates[1]
+  };
+  map.flyTo([center.lat, center.lng], 13);
+}
+
+// Click show images
+$(document).ready( () => {
+$("#divContainer img").on({
+  mouseover () {
+    $(this).css({
+     'cursor': 'pointer',
+     'border-color': 'red'
+    });
+  },
+  mouseout () {
+    $(this).css({
+      'cursor': 'default',
+      'border-color': 'grey'
+     });
+  },
+  click () {
+    let imageUrl = $(this).attr('src');
+    $('#mainImage').fadeOut(300, function () {
+      $(this).attr('src', imageUrl);
+  }).fadeIn(300);
+  }
+});
+});
+
+// Slide show images
+$(document).ready( () => {
+  let imagesURLs = new Array();
+  let intervalId;
+  let btnStart = $("#btnStartSlideShow");
+  let btnStop = $("#btnStopSlideShow");
+
+  $("#divContainer img").each( function () {
+    imagesURLs.push($(this).attr("src"));
+  });
+
+  function setImage() {
+    let mainImageElement = $("#mainImage");
+    let currentImageURL = mainImageElement.attr("src");
+    let currentImageIndex = $.inArray(currentImageURL, imagesURLs);
+    if(currentImageIndex == (imagesURLs.length -1)) {
+      currentImageIndex = -1;
+    }
+    mainImageElement.attr("src", imagesURLs[currentImageIndex+1]);
+  }
+
+  btnStart.click(function () {
+    IntervalId = setInterval(setImage, 3000);
+    $(this).attr("disabled", "disabled");
+    btnStop.removeAttr("disabled");
+  });
+
+  btnStop.click(function () {
+    clearInterval (IntervalId);
+    $(this).attr("disabled", "disabled");
+    btnStart.removeAttr("disabled");
+  }).attr("disabled", "disabled");
+
+});
 
 initmap();

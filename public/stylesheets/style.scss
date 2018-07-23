@@ -8,7 +8,8 @@ a {
 }
 
 #map { 
-  height: 400px; 
+  // width: 70vw;
+  height: 400px;
 }
 
 .leaflet-grab {
@@ -20,6 +21,17 @@ a {
 }
 
 .img{
-  width: 10%;
+  width: 10%
 }
 
+.imgMainStyle{
+  height: 300px;
+  width: 300px;
+  border: 3px solid grey;
+}
+
+.imgStyle{
+  height: 100px;
+  width: 100px;
+  border: 3px solid grey;
+}

@@ -9,7 +9,7 @@
 <ul>
       {{#each places}}
       <li >
-        <a href="#" onclick="zoomIn({{this.location}})" class="zoom">{{this.name}}</a> |
+        <a href="#" onclick="zoomIn({{this.location}})">{{this.name}}</a> |
         <a href="/{{this._id}}/edit">Edit</a> |
         <a href="/{{this._id}}/delete">Delete</a>
       </li>
