@@ -26,13 +26,13 @@ function initmap() {
   }
   getPlace();
 
-// Gt coordinates for markers
+// Get coordinates for markers
   function placePlaces(places){
     places.forEach((place) => {
       // console.log(place);
       const center = {
-        lat: place.location.coordinates[0],
-        lng: place.location.coordinates[1]
+        lat: place.location.coordinates[1],
+        lng: place.location.coordinates[0]
       };
       // Add markers to the map
       const pin = new L.marker([center.lat, center.lng]).addTo(map)
@@ -50,8 +50,8 @@ function initmap() {
       });
     }
     else if (markers.length === 1) {
-      lat = places[0].location.coordinates[0];
-      lng = places[0].location.coordinates[1];
+      lat = places[0].location.coordinates[1];
+      lng = places[0].location.coordinates[0];
       map.setView(new L.LatLng(lat, lng), 4);
       $("#zoomOut").on('click', function(e){
         map.setView(new L.LatLng(lat, lng), 4);
@@ -63,8 +63,8 @@ function initmap() {
 // Fly to markers
 function zoomIn(loc){
   const center = {
-    lat: loc.coordinates[0],
-    lng: loc.coordinates[1]
+    lat: loc.coordinates[1],
+    lng: loc.coordinates[0]
   };
   map.flyTo([center.lat, center.lng], 13);
 }

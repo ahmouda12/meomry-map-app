@@ -14,7 +14,7 @@ placeRoutes.get('/new', (req, res, next) => {
 placeRoutes.post('/new', uploadCloud.single('photo'), (req, res, next) => {
 	// Get params from POST
 	const userId = req.session.currentUser._id;
-  const location = {type: 'Point', coordinates: [req.body.latitude, req.body.longitude]};
+  const location = {type: 'Point', coordinates: [req.body.longitude, req.body.latitude]};
 	const {name, description} = req.body;
   const imgPath = req.file.url;
   const imgName = req.file.originalname;
@@ -38,7 +38,7 @@ placeRoutes.post('/:place_id', uploadCloud.single('photo'),(req, res, next) => {
 		else {
 			place.name         = req.body.name;
 			place.description  = req.body.description;
-			place.location 		 = { type: 'Point', coordinates: [req.body.latitude, req.body.longitude]};
+			place.location 		 = { type: 'Point', coordinates: [req.body.longitude, req.body.latitude]};
 			place.imgPath			 = req.file.url;
     	place.imgName 		 = req.file.originalname;
 			place.save((error) => {
