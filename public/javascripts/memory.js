@@ -9,14 +9,14 @@ function initmap() {
     zoom: 2
   });
 
-  let name = -1;
-  let zoomTo = -1;
+  // let name = -1;
+  // let zoomTo = -1;
   let markers = [];
   let imgUrls = [];
   let imgNames = [];
   let locations = [];
   let placeNames = [];
-
+ 
 	// Create the tile layer with correct attribution
 	L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
   }).addTo(map);
@@ -62,10 +62,7 @@ function initmap() {
       $("#zoomOut").on('click', function(e){
         const group = L.featureGroup(markers).addTo(map);
         map.fitBounds(group.getBounds(), {padding: [50,50]});
-        map.closePopup();
-        // $("#mainImage").attr("src", "/images/Made-for-Memories.jpg");
-        // $("#mainImage").attr("alt", "Made-for-Memories.jpg");
-        
+        map.closePopup();        
       });
     }
     else if (markers.length === 1) {
@@ -75,83 +72,63 @@ function initmap() {
       $("#zoomOut").on('click', function(e){
         map.setView(new L.LatLng(lat, lng), 4);
         map.closePopup();
-        // $("#mainImage").attr("src", "/images/Made-for-Memories.jpg");
-        // $("#mainImage").attr("alt", "Made-for-Memories");
       });
     }
 
     // Manipulate images and locations
-    $("#mainImage").click(function () {
-      let mainImageElement = $("#mainImage");
-      // Replace image's url
-      let currentImageURL = mainImageElement.attr("src");
-      let currentImageIndex = $.inArray(currentImageURL, imgUrls);
-      if(currentImageIndex == (imgUrls.length -1)) {
-        currentImageIndex = -1;
-      }
-      mainImageElement.attr("src", imgUrls[currentImageIndex+1]);
-      // Replace image's alt
-      let currentImageName = mainImageElement.attr("alt");
-      let currentImageNameIndex = $.inArray(currentImageName, imgNames);
-      if(currentImageNameIndex == (imgNames.length -1)) {
-        currentImageNameIndex = -1;
-      }
-      mainImageElement.attr("alt", imgNames[currentImageNameIndex+1]);
-      // Zoom to image's location
-      zoomTo = (zoomTo+1) % locations.length;   
-      map.flyTo([locations[zoomTo].lat, locations[zoomTo].lng], 13);
-      // Popup place's name when zoom
-      name = (name+1) % placeNames.length; 
-      // var popup = L.popup()
-      // .setLatLng(locations[zoomTo])
-      // .setContent(placeNames[name])
-      // .openOn(map);
-      markers[name].openPopup();
-    });
+    // // Click on images
+    // $("#mainImage").click(function () {
+    //   let mainImageElement = $("#mainImage");
+    //   // Replace image's url
+    //   let currentImageURL = mainImageElement.attr("src");
+    //   let currentImageIndex = $.inArray(currentImageURL, imgUrls);
+    //   if(currentImageIndex == (imgUrls.length -1)) {
+    //     currentImageIndex = -1;
+    //   }
+    //   mainImageElement.attr("src", imgUrls[currentImageIndex+1]);
+    //   // Replace image's alt
+    //   let currentImageName = mainImageElement.attr("alt");
+    //   let currentImageNameIndex = $.inArray(currentImageName, imgNames);
+    //   if(currentImageNameIndex == (imgNames.length -1)) {
+    //     currentImageNameIndex = -1;
+    //   }
+    //   mainImageElement.attr("alt", imgNames[currentImageNameIndex+1]);
+    //   // Zoom to image's location
+    //   zoomTo = (zoomTo+1) % locations.length;   
+    //   map.flyTo([locations[zoomTo].lat, locations[zoomTo].lng], 13);
+    //   // Popup place's name when zoom
+    //   name = (name+1) % placeNames.length; 
+    //   markers[name].openPopup();
+    // });
 
-
+    let curimg = -1;
+    let numimg = imgUrls.length;
+    // Next arrow
     $("#arrowPrev").click(function () {
       let mainImageElement = $("#mainImage");
-      // Replace image's url
-      // let currentImageURL = mainImageElement.attr("src");
-      // let currentImageIndex = $.inArray(currentImageURL, imgUrls);
-      // if(currentImageIndex == (imgUrls.length -1)) {
-      //   currentImageIndex = -1;
-      // }
-      // mainImageElement.attr("src", imgUrls[currentImageIndex+1]);
-      // if (zoomTo === 0) {
-        // console.log(locations.length)
-        zoomTo =1;
-      // zoomTo = (zoomTo+1) % locations.length; 
-      // console.log((zoomTo+1) % locations.length)  
-      map.flyTo([locations[zoomTo].lat, locations[zoomTo].lng], 13);
-      // }
-      // else {
-      //   zoomTo = (zoomTo) % locations.length;   
-      // map.flyTo([locations[zoomTo].lat, locations[zoomTo].lng], 13);
-      // }
+      if (curimg>0) {
+        mainImageElement.attr("src", imgUrls[curimg-1]);
+        mainImageElement.attr("alt", imgNames[curimg-1]);
+        map.flyTo([locations[curimg-1].lat, locations[curimg-1].lng], 10);
+        markers[curimg-1].openPopup();
+        curimg = curimg - 1;
+      } else{
+        //  alert("This is the first image");
+        }
     });
 
-
+    // Previous arrow
     $("#arrowNext").click(function () {
       let mainImageElement = $("#mainImage");
-      // Replace image's url
-      let currentImageURL = mainImageElement.attr("src");
-      let currentImageIndex = $.inArray(currentImageURL, imgUrls);
-      if(currentImageIndex == (imgUrls.length -1)) {
-        currentImageIndex = -1;
-      }
-      mainImageElement.attr("src", imgUrls[currentImageIndex+1]);
-      // if (zoomTo === 0) {
-        // console.log(locations.length)
-        // zoomTo =0;
-      zoomTo = (zoomTo+1) % locations.length;  
-      map.flyTo([locations[zoomTo].lat, locations[zoomTo].lng], 13);
-      // }
-      // else {
-      //   zoomTo = (zoomTo) % locations.length;   
-      // map.flyTo([locations[zoomTo].lat, locations[zoomTo].lng], 13);
-      // }
+       if(curimg < numimg-1){        
+        mainImageElement.attr("src", imgUrls[curimg+1]);
+        mainImageElement.attr("alt", imgNames[curimg+1]);
+        map.flyTo([locations[curimg+1].lat, locations[curimg+1].lng], 10);
+        markers[curimg+1].openPopup();
+        curimg = curimg + 1;
+       } else{
+          // alert("This is the last image");
+         }
     });
   }
 }
