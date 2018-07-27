@@ -1,5 +1,5 @@
 body {
-  padding: 20px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -8,8 +8,14 @@ a {
 }
 
 #map { 
-  // width: 70vw;
+  // position: absolute; width: 100%; height: 570px; top: 0; left: 0;
   height: 400px;
+}
+
+.divMap {
+  // height: 100%;
+  // width: 100vw;
+  display: inline-block;
 }
 
 .leaflet-grab {
@@ -20,25 +26,47 @@ a {
 	cursor: move;
 }
 
-.img{
-  width: 10%
-}
+// .img{
+//   width: 10%
+// }
 
+// Memory page style
 .imgMainStyle{
-  height: 300px;
+  // max-height: 23vw;
+  //   min-height: 23vw;
+  //   max-width:23vw;
+  //   min-width: 23vw;
+  //   bottom: 0;
+  //   left: 0;
+  //   margin: auto;
+  //   position: relative;
+  //   right: 0;
+  //   top: 0;
   width: 300px;
-  border: 3px solid grey;
+  height: 300px;
+    border: 3px solid grey;
 }
 
 .imgStyle{
   height: 100px;
   width: 100px;
   border: 3px solid grey;
+  margin: 1px;
 }
 
+.mainbar {
+  // width: 100%;
+  // height: 100px;
+  background-color: #1c3217;
+  color: white;
+}
 
-
-.cont {
-  width: 400px;
-  height: 400px;
+.arrow {
+  // vertical-align: middle;
+  // background-color: #1c3217;
+  // max-height: 4vw;
+  // min-height: 4vw;
+  // max-width: 3vw;
+  // min-width: 3vw;
+  // position: absolute;
 }

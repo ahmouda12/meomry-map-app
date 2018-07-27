@@ -2,10 +2,17 @@
     
   <p> Hello, {{ user.firstname }}. </p>
 
-{{#if places}}
-<a href="/{{user.firstname}}/memory">Go to your memories</a>
+{{!-- {{#if places}} --}}
+{{!-- <a href="/{{user.firstname}}/memory">Go to your memories</a> --}}
+
+<p> Create a new memory</p>
+<form method="POST" action="/new-memory">
+<input type="text" name="name" placeholder="Memory name">
+ <input type="submit" name="" value="create">
+ </form>
+
 <br></br>
-<a href="#" id="zoomOut">Your places:</a>
+{{!-- <a href="#" id="zoomOut">Your places:</a>
 <ul>
       {{#each places}}
       <li >
@@ -14,11 +21,26 @@
         <a href="/{{this._id}}/delete">Delete</a>
       </li>
       {{/each }}
-    </ul>
-{{/if}}
+    </ul> --}}
+{{!-- {{/if}} --}}
 
-<a href="/new">Add a new place</a>
-<br></br>
+{{#if memories}}
+<p>Your memories</p>
+<ul>
+{{#each memories}}
+      <li >
+        {{!-- <a href="#" onclick="zoomIn({{this.location}})">{{this.name}}</a> | --}}
+        <a href="/{{this.id}}/memory-dashboard">{{this.name}}</a> |
+        {{!-- <a href="/{{this._id}}/edit">Edit</a> | --}}
+        <a href="/{{this.id}}/delete-memory">Delete</a>
+      </li>
+      {{/each }}
+
+</ul>
+{{/if}}
+{{!-- <br></br> --}}
+{{!-- <a href="/new">Add a new place</a> --}}
+{{!-- <br></br> --}}
 <a href="/logout"> Log Out </a>
 <br></br>
 

@@ -2,6 +2,7 @@ const express     = require('express');
 const userRoutes  = express.Router();
 const User        = require('../models/user');
 const Place       = require('../models/place');
+const Memory      = require('../models/memory');
 
 
 userRoutes.get('/:userName/dashboard', (req, res, next) => {
@@ -10,7 +11,13 @@ userRoutes.get('/:userName/dashboard', (req, res, next) => {
 	Place.find({ 'userId': userId })
 	.exec((error, places) => {
 		if (error) { next(error); } 
-		else { res.render('user/dashboard', { places, userName });}
+		else { 
+			Memory.find({ 'userId': userId })
+			.exec((error, memories) => {
+				if (error) { next(error); } 
+				else { res.render('user/dashboard', { places, memories, userName });}
+			});
+		}
 	});
 });
 

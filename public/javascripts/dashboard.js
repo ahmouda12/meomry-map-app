@@ -16,7 +16,7 @@ function initmap() {
   }).addTo(map);
 
   function getPlace() {
-    axios.get("/json")
+    axios.get("/json/")
     .then( response => {
       placePlaces(response.data.places);
     })

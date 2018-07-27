@@ -20,6 +20,7 @@
     "hbs": "~4.0.1",
     "hoek": "^5.0.3",
     "mongoose": "~4.13.4",
+    "mongoose-get-default-value": "^1.0.0",
     "morgan": "~1.9.0",
     "multer": "^1.3.1",
     "multer-storage-cloudinary": "^2.2.1",

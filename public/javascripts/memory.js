@@ -16,6 +16,7 @@ function initmap() {
   let imgNames = [];
   let locations = [];
   let placeNames = [];
+  let placeDescs = [];
  
 	// Create the tile layer with correct attribution
 	L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
@@ -23,12 +24,13 @@ function initmap() {
 
   // Get data from json file
   function getPlace() {
-    axios.get("/json")
+    // console.log($('#memoryId').data('id'), 'HERE!!!');
+    axios.get("/json/" + $('#memoryId').data('id'))
     .then( response => {
       placePlaces(response.data.places);
     })
     .catch(error => {
-      next(error);
+      console.log(error);
     });
   }
   getPlace();
@@ -38,10 +40,14 @@ function initmap() {
       const imgUrl = place.imgPath;
       const imgName = place.imgName;
       const placeName = place.name;
+      const placeDesc = place.description;
       const center = {
         lat: place.location.coordinates[1],
         lng: place.location.coordinates[0]
       };
+
+      // Thumbnails slider
+      $('.thumbnail').append('<a href="javascript:"><img class="imgStyle" width="100" height="100" alt="slider" src="'+imgUrl+'"></a>');
 
       // Add markers to the map
       const pin = new L.marker([center.lat, center.lng]).addTo(map)
@@ -53,6 +59,7 @@ function initmap() {
       imgNames.push(imgName);
       locations.push(center);
       placeNames.push(placeName);
+      placeDescs.push(placeDesc);
     });
 
     // Zoom to fit all markers
@@ -109,6 +116,7 @@ function initmap() {
       if (curimg>0) {
         mainImageElement.attr("src", imgUrls[curimg-1]);
         mainImageElement.attr("alt", imgNames[curimg-1]);
+        $(".desc").text(placeDescs[curimg-1]);
         map.flyTo([locations[curimg-1].lat, locations[curimg-1].lng], 10);
         markers[curimg-1].openPopup();
         curimg = curimg - 1;
@@ -123,6 +131,7 @@ function initmap() {
        if(curimg < numimg-1){        
         mainImageElement.attr("src", imgUrls[curimg+1]);
         mainImageElement.attr("alt", imgNames[curimg+1]);
+        $(".desc").text(placeDescs[curimg+1]);
         map.flyTo([locations[curimg+1].lat, locations[curimg+1].lng], 10);
         markers[curimg+1].openPopup();
         curimg = curimg + 1;
@@ -130,21 +139,23 @@ function initmap() {
           // alert("This is the last image");
          }
     });
+
+    
   }
 }
 
-// // Fly to markers
-// function zoomIn(loc){
-//   const center = {
-//     lat: loc.coordinates[1],
-//     lng: loc.coordinates[0]
-//   };
-//   map.flyTo([center.lat, center.lng], 13);
-// }
+// Fly to markers
+function zoomIn(loc){
+  const center = {
+    lat: loc.coordinates[1],
+    lng: loc.coordinates[0]
+  };
+  map.flyTo([center.lat, center.lng], 7);
+}
 
 // // Click show images
 // $(document).ready( () => {
-//   $("#divContainer img").on({
+//   $(".divContainer img").on({
 //     mouseover () {
 //       $(this).css({
 //       'cursor': 'pointer',

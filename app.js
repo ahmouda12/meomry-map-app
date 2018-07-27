@@ -22,6 +22,9 @@ const User = require('./models/user');
 // Place model
 const Place = require('./models/place');
 
+// Memory model
+const Memory = require('./models/memory');
+
 mongoose.Promise = Promise;
 mongoose
   .connect(process.env.MONGODB_URI, {useMongoClient: true})
@@ -168,11 +171,13 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const placeRoutes = require("./routes/place");
 const memoryRoutes = require("./routes/memory");
+const newMemoryRoutes = require("./routes/new-memory");
 app.use('/', index);
 app.use('/', authRoutes);
 app.use('/', userRoutes);
 app.use('/', placeRoutes);
 app.use('/', memoryRoutes);
+app.use('/', newMemoryRoutes);
 
 
 module.exports = app;
