@@ -59,24 +59,24 @@ authRoutes.post('/signup', (req, res, next) => {
         });
         return;
       }
-      res.redirect('/login');
+      res.redirect('/');
     });
   });
 });
 
 // Login
-authRoutes.get('/login', (req, res, next) => {
-  res.render('auth/login', {
+authRoutes.get('/', (req, res, next) => {
+  res.render('index', {
     errorMessage: ''
   });
 });
 
-authRoutes.post('/login', (req, res, next) => {
+authRoutes.post('/', (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
   if (email === '' || password === '') {
-    res.render('auth/login', {
+    res.render('index', {
       errorMessage: 'Enter both email and password to log in.'
     });
     return;
@@ -84,14 +84,14 @@ authRoutes.post('/login', (req, res, next) => {
 
   User.findOne({ email: email }, (err, theUser) => {
     if (err || theUser === null) {
-      res.render('auth/login', {
+      res.render('index', {
         errorMessage: `There isn't an account with email ${email}.`
       });
       return;
     }
 
     if (!bcrypt.compareSync(password, theUser.password)) {
-      res.render('auth/login', {
+      res.render('index', {
         errorMessage: 'Invalid password.'
       });
       return;
@@ -106,7 +106,7 @@ authRoutes.post('/login', (req, res, next) => {
 authRoutes.get("/auth/facebook", passport.authenticate("facebook"));
 authRoutes.get("/auth/facebook/callback", passport.authenticate("facebook", {
   successRedirect: "/user",
-  failureRedirect: "/login"
+  failureRedirect: "/"
 }));
 
 // Google Login
@@ -117,7 +117,7 @@ authRoutes.get("/auth/google", passport.authenticate("google", {
 
 authRoutes.get("/auth/google/callback", passport.authenticate("google", {
   successRedirect: "/user",
-  failureRedirect: "/login"
+  failureRedirect: "/"
 }));
 
 // Logout

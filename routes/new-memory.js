@@ -4,7 +4,6 @@ const User        = require('../models/user');
 const Place       = require('../models/place');
 const Memory      = require('../models/memory');
 
-
 newMemoryRoutes.get('/new-memory', (req, res, next) => {
 	const userName = req.session.currentUser.firstname;
   res.render('user/new-memory', { userName });

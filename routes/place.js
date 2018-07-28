@@ -1,11 +1,8 @@
 const express      = require('express');
 const placeRoutes  = express.Router();
-// const multer       = require('multer');
 const uploadCloud  = require('../config/cloudinary.js');
 const Place        = require('../models/place');
 const Memory        = require('../models/memory');
-
-// const upload       = multer({ dest: './public/uploads/' });
 
 // New place
 placeRoutes.get('/:id/new', (req, res, next) => {
@@ -92,28 +89,12 @@ placeRoutes.get('/json/:memory', (req, res, next) => {
 	// const memoryId = req.params.id;
 	Place.find({ 'memoryId': req.params.memory })
 	.exec((error, places) => {
-		if (error) { next(error);} 
-		// places.forEach(place => {
-		// 	Memory.findById(place.memoryId)
-		// 	.then (foundMemory => {
-		// 		console.log('mem id: ', foundMemory._id);
-		// 		console.log('pl mem: ', place.memoryId);
-		// 		// if((foundMemory._id).equals(place.memoryId)){
-		// 		// 	console.log('mem: ', foundMemory)
-		// 		// }
-		// 	});
-		// }); 
+		if (error) { next(error);}  
 		else { 
 			res.status(200).json({ places });
 		}
 	});
 });
-
-// placeRoutes.get('/:id/new', (req, res, next) => {
-// 	const userName = req.session.currentUser.firstname;
-// 	const memoryId = req.params.id;
-//   res.render('place/new', { userName, memoryId });
-// });
 
 // Store place information in json
 placeRoutes.get('/json', (req, res, next) => {
@@ -122,21 +103,10 @@ placeRoutes.get('/json', (req, res, next) => {
 	Place.find({ 'userId': userId })
 	.exec((error, places) => {
 		if (error) { next(error);} 
-		// places.forEach(place => {
-		// 	Memory.findById(place.memoryId)
-		// 	.then (foundMemory => {
-		// 		console.log('mem id: ', foundMemory._id);
-		// 		console.log('pl mem: ', place.memoryId);
-		// 		// if((foundMemory._id).equals(place.memoryId)){
-		// 		// 	console.log('mem: ', foundMemory)
-		// 		// }
-		// 	});
-		// }); 
 		else { 
 			res.status(200).json({ places });
 		}
 	});
 });
-
 
 module.exports = placeRoutes;

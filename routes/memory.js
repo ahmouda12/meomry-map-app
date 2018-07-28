@@ -4,10 +4,6 @@ const User        = require('../models/user');
 const Place       = require('../models/place');
 const Memory       = require('../models/memory');
 
-// memoryRoutes.get('/user', (req, res, next) => {
-//   res.render('user/user-page');
-// });
-
 memoryRoutes.get('/:userName/:memory/memory', (req, res, next) => {
 	const userId = req.session.currentUser._id;
 	const userName = req.session.currentUser.firstname;

@@ -1,16 +1,33 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-{{#if isUserLoggedIn }}
-  <p> Hello, {{ currentUserInfo.firstname }} </p>
-{{/if}}
-
-<nav>
-  <ul>
-    {{#if isUserLoggedIn  }}
-      <li> <a href="/logout"> Log Out </a> </li>
-    {{else}}
-      <li> <a href="/signup"> Sign Up </a> </li>
-      <li> <a href="/login"> Log In </a> </li>
-    {{/if}}
-  </ul>
-</nav>
+<h1 class="navbar main-page-bar">{{title}}</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5 col-sm-5 col-xs-5 col-lg-5">
+      <p class="main-text">Welcome to {{title}}</p>
+      <h2 style="font-style: italic; font-weight: bold;"> Where You Map Your Memories </h2>
+      {{#if isUserLoggedIn }}
+        <p> Hello, {{ currentUserInfo.firstname }} </p>
+      {{/if}}
+      {{!-- <p class="main-text"> Sign in </p> --}}
+      {{#if errorMessage}}
+        <p class="error-message">
+          {{ errorMessage }}
+        </p>
+      {{/if}}
+      <form action="/" method="post">
+        <label class="edit-text" for="email-input"> Email: </label>
+        <input type="email" name="email" id="email-input" placeholder="e.g., xena@warrior.company" class="form-control">
+        <label class="edit-text" for="password-input"> Password: </label>
+        <input type="password" name="password" id="password-input" placeholder="e.g., ••••••••••••" class="form-control">
+        <div class="main-text">
+          <button class="btn btn-primary"> Sign in </button>
+        </div>
+      </form>
+      {{!-- <div class="edit-text"><a href="/auth/facebook"> Sign in With Facebook </a></div> --}}
+      {{!-- <div class="edit-text"><a href="/auth/google"> Sign in With Google </a></div> --}}
+      <p class="edit-text">Don't have an account?<a href="/signup"> Create an account.</a></p>
+    </div>
+    <div class="col-md-7 col-sm-7 col-xs-7 col-lg-7">
+      <img class="main-img" src="/images/Map your memories.jpg" alt="Map your memories.jpg">
+    </div>
+  </div>
+</div>

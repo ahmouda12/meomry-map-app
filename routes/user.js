@@ -4,7 +4,6 @@ const User        = require('../models/user');
 const Place       = require('../models/place');
 const Memory      = require('../models/memory');
 
-
 userRoutes.get('/:userName/dashboard', (req, res, next) => {
 	const userId = req.session.currentUser._id;
 	const userName = req.session.currentUser.firstname;

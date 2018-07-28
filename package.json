@@ -19,6 +19,7 @@
     "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "hoek": "^5.0.3",
+    "leaflet-geosearch": "^2.7.0",
     "mongoose": "~4.13.4",
     "mongoose-get-default-value": "^1.0.0",
     "morgan": "~1.9.0",

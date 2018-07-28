@@ -1,4 +1,3 @@
-
 function initmap() {
 	// set up the map
   let map = L.map( 'map', {
@@ -22,7 +21,7 @@ function initmap() {
     .setContent("lat: " + lat + ", lng: " + lng)
     .openOn(map); 
     // console.log(e.latlng);      
-  });     
+  }); 
 }
 
 initmap();

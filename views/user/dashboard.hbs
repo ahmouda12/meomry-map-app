@@ -1,54 +1,43 @@
-<h2>Dashboard</h2>
-    
-  <p> Hello, {{ user.firstname }}. </p>
-
-{{!-- {{#if places}} --}}
-{{!-- <a href="/{{user.firstname}}/memory">Go to your memories</a> --}}
-
-<p> Create a new memory</p>
-<form method="POST" action="/new-memory">
-<input type="text" name="name" placeholder="Memory name">
- <input type="submit" name="" value="create">
- </form>
-
-<br></br>
-{{!-- <a href="#" id="zoomOut">Your places:</a>
-<ul>
-      {{#each places}}
-      <li >
-        <a href="#" onclick="zoomIn({{this.location}})">{{this.name}}</a> |
-        <a href="/{{this._id}}/edit">Edit</a> |
-        <a href="/{{this._id}}/delete">Delete</a>
-      </li>
-      {{/each }}
-    </ul> --}}
-{{!-- {{/if}} --}}
-
-{{#if memories}}
-<p>Your memories</p>
-<ul>
-{{#each memories}}
-      <li >
-        {{!-- <a href="#" onclick="zoomIn({{this.location}})">{{this.name}}</a> | --}}
-        <a href="/{{this.id}}/memory-dashboard">{{this.name}}</a> |
-        {{!-- <a href="/{{this._id}}/edit">Edit</a> | --}}
-        <a href="/{{this.id}}/delete-memory">Delete</a>
-      </li>
-      {{/each }}
-
-</ul>
-{{/if}}
-{{!-- <br></br> --}}
-{{!-- <a href="/new">Add a new place</a> --}}
-{{!-- <br></br> --}}
-<a href="/logout"> Log Out </a>
-<br></br>
-
-<div id="map"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5 col-sm-5 col-xs-5 col-lg-5">
+      <h2 class="mainbar">Dashboard</h2>
+      <p class="main-text"> Hello, {{ user.firstname }} </p>
+      <div class="list-container">
+        {{#if memories}}
+          <div class="main-text">Your memories:</div>
+          <ul>
+            {{#each memories}}
+              <li >
+                <a href="/{{this.id}}/memory-dashboard">{{this.name}}</a> |
+                <a href="/{{this.id}}/delete-memory"><font font color="red">Delete</font></a>
+              </li>
+            {{/each }}
+          </ul>
+        {{/if}}
+      </div>
+      <p class="main-text"> CREAT NEW MEMORY</p>
+      <form method="POST" action="/new-memory">
+        <div class="row">
+          <div class="col">
+            <input type="text" name="name" placeholder="Memory name" class="form-control">
+          </div>
+          <div class="col">
+            <input type="submit" name="" value="Create" class="btn btn-success">
+          </div>
+        </div>
+      </form>
+      <div class="main-text"><a href="/logout"><font font color="blue">Sign out</font></a></div>
+    </div>
+    <div class="col-md-7 col-sm-7 col-xs-7 col-lg-7 lealet-map">
+      <section id="map"></section>
+    </div>
+  </div>
+</div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.3.2/dist/leaflet.js"
-      integrity="sha512-2fA79E27MOeBgLjmBrtAgM/20clVSV8vJERaW/EcnnWCVGwQRazzKtQS1kIusCZv1PtaQxosDZZ0F1Oastl55w=="
-      crossorigin=""></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+        integrity="sha512-2fA79E27MOeBgLjmBrtAgM/20clVSV8vJERaW/EcnnWCVGwQRazzKtQS1kIusCZv1PtaQxosDZZ0F1Oastl55w=="
+        crossorigin=""></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
 <script src='/javascripts/dashboard.js'></script>

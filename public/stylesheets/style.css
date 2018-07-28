@@ -1,15 +1,27 @@
 body {
-  padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  padding: 0;
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #d8d6bf; }
 
 a {
   color: #00B7FF; }
 
-#map {
-  height: 400px; }
+.lealet-map {
+  position: relative;
+  padding-bottom: 46.5%;
+  height: 0;
+  overflow: hidden; }
 
-.divMap {
-  display: inline-block; }
+.lealet-map section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important; }
+
+.img-container {
+  text-align: center; }
 
 .leaflet-grab {
   cursor: auto; }
@@ -18,18 +30,142 @@ a {
   cursor: move; }
 
 .imgMainStyle {
-  width: 300px;
-  height: 300px;
+  max-height: 30vw;
+  min-height: 30vw;
+  max-width: 31vw;
+  min-width: 31vw;
+  bottom: 0;
+  left: 0;
+  margin: 0 0;
+  right: 0;
+  top: 0;
   border: 3px solid grey; }
 
-.imgStyle {
-  height: 100px;
-  width: 100px;
-  border: 3px solid grey;
-  margin: 1px; }
+.main-img {
+  position: absolute;
+  max-width: 80%;
+  top: 10%;
+  left: 10%;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.9); }
 
 .mainbar {
-  background-color: #1c3217;
-  color: white; }
+  background-color: #4a6748;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  border-bottom: 3px solid grey;
+  color: #eb6f25;
+  text-shadow: 2px 2px black;
+  font-size: 3vw; }
+
+.main-page-bar {
+  background-color: #4a6748;
+  border-bottom: 3px solid grey;
+  color: white;
+  padding-left: 60px; }
+
+.mainbar a {
+  text-align: center;
+  font-size: 3vw;
+  text-decoration: none;
+  color: #eb6f25;
+  text-shadow: 2px 2px black; }
+
+.arrow {
+  top: 150px;
+  max-height: 3vw;
+  min-height: 3vw;
+  max-width: 1.2vw;
+  min-width: 1.2vw; }
+
+.place-name {
+  text-align: center;
+  height: 60px;
+  padding: 25px;
+  font-size: 20px;
+  font-weight: bold; }
+
+.place-desc {
+  text-align: center;
+  height: 80px;
+  padding: 20px;
+  font-size: 15px; }
+
+.list-container {
+  font-size: 16px;
+  color: #eb6f25; }
+
+ul li {
+  padding-top: 15px; }
+
+ul li a {
+  text-decoration: none;
+  color: gray;
+  padding-bottom: 15px; }
+
+.main-text {
+  font-size: 18px;
+  padding-top: 20px;
+  color: black; }
+
+.main-text a {
+  color: black; }
+
+.edit-text {
+  font-size: 16px;
+  margin-top: 20px; }
+
+@media (min-width: 1400px) {
+  .lealet-map {
+    position: relative;
+    padding-bottom: 49.3%;
+    height: 0;
+    overflow: hidden; }
+  .lealet-map section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important; } }
+
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  .lealet-map {
+    position: relative;
+    padding-bottom: 46.5%;
+    height: 0;
+    overflow: hidden; }
+  .lealet-map section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important; } }
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .lealet-map {
+    position: relative;
+    padding-bottom: 67.5%;
+    height: 0;
+    overflow: hidden; }
+  .lealet-map section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important; } }
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .lealet-map {
+    position: relative;
+    padding-bottom: 90.5%;
+    height: 0;
+    overflow: hidden; }
+  .lealet-map section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important; } }
 
 /*# sourceMappingURL=style.css.map */

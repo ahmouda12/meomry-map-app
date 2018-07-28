@@ -44,29 +44,22 @@ function initmap() {
     if (markers.length > 1) {
       const group = L.featureGroup(markers).addTo(map);
       map.fitBounds(group.getBounds(), {padding: [50,50]});
-      $("#zoomOut").on('click', function(e){
-        const group = L.featureGroup(markers).addTo(map);
-        map.fitBounds(group.getBounds(), {padding: [50,50]});
-      });
     }
     else if (markers.length === 1) {
       lat = places[0].location.coordinates[1];
       lng = places[0].location.coordinates[0];
       map.setView(new L.LatLng(lat, lng), 4);
-      $("#zoomOut").on('click', function(e){
-        map.setView(new L.LatLng(lat, lng), 4);
-      });
     }
   }
 }
 
-// Fly to markers
-function zoomIn(loc){
-  const center = {
-    lat: loc.coordinates[1],
-    lng: loc.coordinates[0]
-  };
-  map.flyTo([center.lat, center.lng], 13);
-}
+// // Fly to markers
+// function zoomIn(loc){
+//   const center = {
+//     lat: loc.coordinates[1],
+//     lng: loc.coordinates[0]
+//   };
+//   map.flyTo([center.lat, center.lng], 13);
+// }
 
 initmap();
