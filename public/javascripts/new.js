@@ -8,7 +8,7 @@ function initmap() {
   });
 
 	// create the tile layer with correct attribution
-	L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
+	L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
   }).addTo(map);
 
   // Show lat & long onclick
